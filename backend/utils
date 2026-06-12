@@ -1,0 +1,58 @@
+#!/usr/bin/env python3
+"""
+Create a test user for login testing
+"""
+
+import asyncio
+import sys
+from pathlib import Path
+
+# Add the backend directory to the path
+backend_dir = Path(__file__).parent
+sys.path.append(str(backend_dir))
+
+from sqlalchemy.ext.asyncio import AsyncSession
+from core.database import async_engine
+from models.user import User
+from passlib.context import CryptContext
+import uuid
+
+async def create_test_user():
+    """Create a test user account"""
+    print("Creating test user...")
+    
+    try:
+        # Create password hasher
+        pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+        
+        async with AsyncSession(async_engine) as session:
+            # Create test user
+            hashed_password = pwd_context.hash("demo")
+            
+            test_user = User(
+                id=str(uuid.uuid4()),
+                username="demo",
+                email="demo@campus.edu",
+                full_name="演示用户",
+                role="student",
+                student_id="2024001",
+                department="计算机学院",
+                grade="2024",
+                major="计算机科学与技术",
+                hashed_password=hashed_password,
+                is_active=True
+            )
+            
+            session.add(test_user)
+            await session.commit()
+            
+            print("✅ Test user created successfully!")
+            print("Username: demo")
+            print("Password: demo")
+            print("Email: demo@campus.edu")
+            
+    except Exception as e:
+        print(f"❌ Error creating test user: {str(e)}")
+
+if __name__ == "__main__":
+    asyncio.run(create_test_user())

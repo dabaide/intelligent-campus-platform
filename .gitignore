@@ -1,0 +1,79 @@
+# ==================== Python ====================
+# 虚拟环境
+venv/
+.venv/
+env/
+.env
+
+# Python 缓存
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# 数据库
+*.db
+*.sqlite
+*.sqlite3
+
+# 环境变量文件
+.env
+.env.local
+.env.*.local
+
+# 日志
+*.log
+logs/
+
+# 分发/打包
+dist/
+build/
+*.egg-info/
+*.egg
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ==================== Node.js / 前端 ====================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# 构建产物
+/build
+/dist
+/.next
+/out
+
+# 缓存
+.eslintcache
+*.tsbuildinfo
+.npm
+
+# ==================== 操作系统 ====================
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ==================== 其他 ====================
+# 临时文件
+tmp/
+temp/
+*.tmp
+
+# 测试覆盖率
+coverage/
+.nyc_output
+*.lcov
+
+# Docker
+docker-compose.override.yml
